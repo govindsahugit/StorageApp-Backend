@@ -19,9 +19,14 @@ await connectDB();
 const app = express();
 const port = 4000;
 
-app.use(cors());
-
-app.options("*", cors());
+app.use(
+  cors({
+    origin: "*",
+    preflightContinue: true,
+    credentials: true,
+    methods: "*",
+  })
+);
 
 app.use(helmet());
 
