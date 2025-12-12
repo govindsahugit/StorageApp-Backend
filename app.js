@@ -25,6 +25,7 @@ app.use(
       "http://192.168.1.10:5173",
       "http://localhost:5173",
       "http://localhost:5500",
+      process.env.CLIENT_URL,
     ],
     credentials: true,
   })
