@@ -38,6 +38,12 @@ app.use(express.json());
 
 app.use(express.static("storage"));
 
+app.get("/", (req, res) => {
+  return res.json({
+    Hello: "StorageApp",
+  });
+});
+
 app.use("/webhooks", webhookRoutes);
 
 app.use("/directory", CheckAuth, directoryRoutes);

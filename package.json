@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "dev": "node --watch --env-file=.env app.js",
-    "setup": "node --watch --env-file=.env config/setup.js"
+    "setup": "node --env-file=.env config/setup.js",
+    "build": "npm i",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",

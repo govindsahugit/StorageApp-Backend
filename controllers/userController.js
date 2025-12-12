@@ -144,7 +144,8 @@ export const loginUser = async (req, res, next) => {
 
     res.cookie("sid", sessionId, {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
+      // sameSite: "lax",
       secure: true,
       signed: true,
       maxAge: 60 * 1000 * 60 * 24 * 7,
@@ -313,7 +314,8 @@ export const loginWithGoogle = async (req, res, next) => {
 
       res.cookie("sid", sessionId, {
         httpOnly: true,
-        sameSite: "lax",
+        sameSite: "none",
+        // sameSite: "lax",
         secure: true,
         signed: true,
         maxAge: 60 * 1000 * 60 * 24 * 7,
@@ -358,7 +360,8 @@ export const loginWithGoogle = async (req, res, next) => {
 
       res.cookie("sid", sessionId, {
         httpOnly: true,
-        sameSite: "lax",
+        sameSite: "none",
+        // sameSite: "lax",
         secure: true,
         signed: true,
         maxAge: 60 * 1000 * 60 * 24 * 7,
