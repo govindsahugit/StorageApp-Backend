@@ -19,7 +19,7 @@ await connectDB();
 const app = express();
 const port = 4000;
 
-const whitelist = [process.env.CLIENT_URL, "https://storage.govindsahu.me"];
+const whitelist = [process.env.CLIENT_URL, "https://storageapp.govindsahu.me"];
 
 app.use(
   cors({
