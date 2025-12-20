@@ -61,7 +61,7 @@ export const handleGitHubWebhook = async (req, res, next) => {
     res.end("OK");
 
     const bashChildProcess = spawn("bash", [
-      "/home/ubuntu/deploy-frontend.mjs",
+      "/home/ubuntu/deploy-frontend-ec2.sh",
     ]);
 
     bashChildProcess.stdout.on("data", (data) => {
