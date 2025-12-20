@@ -55,6 +55,9 @@ export const handleRazorpayWebhook = async (req, res) => {
 
 export const handleGitHubWebhook = async((req, res, next) => {
   try {
+    console.log(req.headers);
+    console.log(req.body);
+
     res.end("OK");
 
     const bashChildProcess = spawn("bash", [
