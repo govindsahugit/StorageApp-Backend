@@ -2,6 +2,7 @@ import Razorpay from "razorpay";
 import Subscription from "../models/subscriptionModel.js";
 import User from "../models/userModel.js";
 import { spawn } from "child_process";
+import crypto from "crypto";
 
 export const PLANS = {
   plan_RpkRbZ15VUKwVv: {
@@ -55,8 +56,18 @@ export const handleRazorpayWebhook = async (req, res) => {
 
 export const handleGitHubWebhook = async (req, res, next) => {
   try {
-    console.log(req.headers);
-    console.log(req.body);
+    const GitHubSignature = req.headers["x-hub-signature-256"];
+
+    if (!GitHubSignature) return res.end("OK");
+
+    const signature =
+      "sha256=" +
+      crypto
+        .createHmac("sha256", "Gs12@087799")
+        .update(JSON.stringify(req.body))
+        .digest("hex");
+
+    if (GitHubSignature !== signature) return res.end("OK");
 
     res.end("OK");
 
