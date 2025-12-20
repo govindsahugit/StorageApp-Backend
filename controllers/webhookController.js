@@ -53,7 +53,7 @@ export const handleRazorpayWebhook = async (req, res) => {
   res.end("OK");
 };
 
-export const handleGitHubWebhook = async((req, res, next) => {
+export const handleGitHubWebhook = async (req, res, next) => {
   try {
     console.log(req.headers);
     console.log(req.body);
@@ -87,4 +87,4 @@ export const handleGitHubWebhook = async((req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
