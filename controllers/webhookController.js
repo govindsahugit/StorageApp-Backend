@@ -1,6 +1,7 @@
 import Razorpay from "razorpay";
 import Subscription from "../models/subscriptionModel.js";
 import User from "../models/userModel.js";
+import { spawn } from "child_process";
 
 export const PLANS = {
   plan_RpkRbZ15VUKwVv: {
@@ -51,3 +52,36 @@ export const handleRazorpayWebhook = async (req, res) => {
   }
   res.end("OK");
 };
+
+export const handleGitHubWebhook = async((req, res, next) => {
+  try {
+    res.end("OK");
+
+    const bashChildProcess = spawn("bash", [
+      "/home/ubuntu/deploy-frontend.mjs",
+    ]);
+
+    bashChildProcess.stdout.on("data", (data) => {
+      process.stdout.write(data);
+    });
+
+    bashChildProcess.stderr.on("data", (data) => {
+      process.stderr.write(data);
+    });
+
+    bashChildProcess.on("close", (code) => {
+      if (code === 0) {
+        console.log("Script executed successfully!");
+      } else {
+        console.log("Script execution failed!");
+      }
+    });
+
+    bashChildProcess.on("error", (err) => {
+      console.log("Error in spawning the process!");
+      console.log(err);
+    });
+  } catch (error) {
+    next(error);
+  }
+});
