@@ -78,6 +78,9 @@ export const handleGitHubWebhook = async (req, res, next) => {
         ? "deploy-frontend-ec2.sh"
         : "deploy-backend.sh";
 
+    console.log(repositoryName);
+    console.log(bashFile);
+
     const bashChildProcess = spawn("bash", [`/home/ubuntu/${bashFile}`]);
 
     bashChildProcess.stdout.on("data", (data) => {
