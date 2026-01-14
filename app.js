@@ -50,7 +50,7 @@ app.use(express.static("storage"));
 app.get("/health", (req, res) => {
   res
     .status(200)
-    .json({ status: "UP", timestamp: new Date(), message: "OK!!!!" });
+    .json({ status: "UP", timestamp: new Date(), message: "OK" });
 });
 
 app.use("/webhooks", webhookRoutes);
