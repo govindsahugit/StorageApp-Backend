@@ -76,9 +76,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
-  return app.listen(port, () => {
+if (!process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  await connectDB();
+  app.listen(port, () => {
     console.log("Server is running 4000!");
   });
 }
+
 export default app;
